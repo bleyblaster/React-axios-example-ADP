@@ -73,15 +73,16 @@ export default class Tutorial extends Component<Props, State> {
             .catch((e) =>{
                 console.log(e)
             })
-    }
+    } 
     updatePublished(status:boolean){
         const data: ITutorialData = {
             id: this.state.currentTutorial.id,
             title: this.state.currentTutorial.title,
             description: this.state.currentTutorial.description,
+            _id: this.state.currentTutorial._id,
             published: status,
         };
-        TutorialDataService.update(data,this.state.currentTutorial.id)
+        TutorialDataService.update(data,this.state.currentTutorial._id)
             .then((response) =>{
                 this.setState((prevState) => ({
                     currentTutorial:{
@@ -99,7 +100,7 @@ export default class Tutorial extends Component<Props, State> {
     updateTutorial(){
         TutorialDataService.update(
             this.state.currentTutorial,
-            this.state.currentTutorial.id
+            this.state.currentTutorial._id
         )
             .then((response) =>{
                 console.log(response.data);
@@ -112,7 +113,7 @@ export default class Tutorial extends Component<Props, State> {
             })
     }
     deleteTutorial(){
-        TutorialDataService.delete(this.state.currentTutorial.id)
+        TutorialDataService.delete(this.state.currentTutorial._id)
             .then((response) =>{
                 console.log(response.data);
                 this.props.history.push("/tutorials");

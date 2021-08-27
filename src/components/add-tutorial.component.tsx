@@ -59,7 +59,7 @@ export default class AddTutorial extends Component<Props,State> {
     }
     newTutorial(){
         this.setState({
-            id:22,
+            id:null,
             title:"",
             description:"",
             published:false,
